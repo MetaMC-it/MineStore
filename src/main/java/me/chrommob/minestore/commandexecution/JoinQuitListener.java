@@ -22,13 +22,13 @@ public class JoinQuitListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent event) {
         AuthManager.sendAuthMessage(event.getPlayer().getName());
         try {
-            String name = event.getPlayer().getName();
-            if (runLater.get(name).isEmpty()) {
-                runLater.remove(name);
+            String name = event.getPlayer().getName().toLowerCase();
+            if (runLater.get(name.toLowerCase()).isEmpty()) {
+                runLater.remove(name.toLowerCase());
             } else {
                 Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
-                    runLater.get(name).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
-                    runLater.remove(name);
+                    runLater.get(name.toLowerCase()).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
+                    runLater.remove(name.toLowerCase());
                     PunishmentManager.update();
                 });
             }

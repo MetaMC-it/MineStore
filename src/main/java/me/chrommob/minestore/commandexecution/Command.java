@@ -20,6 +20,6 @@ public class Command {
     }
 
     public static synchronized void offline(String username, String command) {
-        Manager.add(username, command);
+        Manager.add(username.toLowerCase(), command);
     }
 }

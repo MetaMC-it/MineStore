@@ -1,0 +1,90 @@
+#
+#    ███╗░░░███╗██╗███╗░░██╗███████╗░██████╗████████╗░█████╗░██████╗░███████╗
+#    ████╗░████║██║████╗░██║██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝
+#    ██╔████╔██║██║██╔██╗██║█████╗░░╚█████╗░░░░██║░░░██║░░██║██████╔╝█████╗░░
+#    ██║╚██╔╝██║██║██║╚████║██╔══╝░░░╚═══██╗░░░██║░░░██║░░██║██╔══██╗██╔══╝░░
+#    ██║░╚═╝░██║██║██║░╚███║███████╗██████╔╝░░░██║░░░╚█████╔╝██║░░██║███████╗
+#    ╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝╚══════╝╚═════╝░░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝╚══════╝
+# -------------------------------------------------------------------------------#
+# Official MineStore Plugin by ChromMob                             -------#
+ms-version: "MineStore next-gen"
+#--------------------------------------------------------#
+#-----------------------------------------------------#
+#               PERMISSIONS                         #
+# Buy - ms.buy                                    #
+# Store - ms.store                               #
+#-----------------------------------------------------#
+
+#-----------------------------------------------------#
+# Do you want to enable the plugin auto-update?       #
+auto-update: false
+#-----------------------------------------------------#
+
+#------------------------------------------------#
+# Modes: websocket or web-listener.              #
+# Websocket requires opened port.                #
+# Web-listener listens to your URL.              #
+#------------------------------------------------#
+mode: websocket
+#------------------------------------------------#
+
+#------------------------------------------------#
+# Websocket port for plugin (port must be opened)
+port: 33266
+password: "hard_password_here"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# Web listener mode enter your secret-key below
+secret-key: "hard_secret_key_here"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# BUY-GUI                                        #
+# Do you want to enable buy gui?                 #
+gui-enabled: false
+format:
+  item-name: "%minestore_item_name%"
+  item-description: "%minestore_item_description%"
+  item-price: "&2Price: %minestore_item_price% &6%currency%"
+settings:
+  name: "&c&lBuy"
+  message: "You can buy items here! https://store.yourdomain.com/"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# Link to your store                             #
+# /store message                                 #
+store-enabled: false
+store-message: "Visit our store: https://store.yourdomain.com/"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# Link to your store's API                       #
+store-api: "https://yourstore.com/api/"
+api-key: "hard_api_key_here"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# MySQL settings                                 #
+mysql:
+  enabled: false
+  ip: "localhost"
+  port: 3306
+  username: "root"
+  password: ""
+  database: "minestore"
+#------------------------------------------------#
+
+#------------------------------------------------#
+# Auth settings                                  #
+auth:
+  # You can change colors here.                  #
+  message: "&2You are trying to log in to our &6&lstore. &6&lCLICK HERE &2to confirm authorization! If you are not able to click run /minestore verify"
+  # Auth timeout in minutes                      #
+  time: 5
+  # Successful message                           #
+  successful: "&6You have been successfully verified."
+  # Failed message                               #
+  failed: "&cYour time run out or you run the command manually."
+#------------------------------------------------#
