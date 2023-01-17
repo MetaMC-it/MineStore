@@ -16,6 +16,7 @@ public class Command {
         }
         Bukkit.getScheduler().runTask(MineStore.instance, () -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+            Bukkit.getLogger().info("§c[MINESTORE LOG] Comando eseguito: §e" + command);
         });
     }
 
