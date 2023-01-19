@@ -37,8 +37,14 @@ public class SocketHandler extends SimpleChannelInboundHandler<String> {
             Bukkit.getLogger().info("[MineStore] Wrong password!");
             return;
         }
-        //Executing the command
-        if (Bukkit.getPlayer(data.getUsername()) == null && data.isPlayerOnlineNeeded()) {
+        //Checking if the command can be executed anyway with the $ variable
+        boolean globalVariable = commandWithoutPrefix.startsWith("£");
+        commandWithoutPrefix = commandWithoutPrefix.replaceFirst("£", "");
+        //Executing the command and checking if player is online/offline or the command has to be executed anyway
+        if (globalVariable) {
+            String finalCommandWithoutPrefix = commandWithoutPrefix;
+            Bukkit.getScheduler().runTask(MineStore.instance, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCommandWithoutPrefix));
+        } else if (Bukkit.getPlayer(data.getUsername()) == null && data.isPlayerOnlineNeeded()) {
             Command.offline(data.getUsername(), commandWithoutPrefix);
         } else {
             Command.online(commandWithoutPrefix);

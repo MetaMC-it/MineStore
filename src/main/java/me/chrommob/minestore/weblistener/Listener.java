@@ -62,6 +62,7 @@ public class Listener {
                 String commandWithoutPrefix = data.getCommand();
                 String[] commandArray = commandWithoutPrefix.split(" ");
                 commandArray[0] = commandArray[0].replaceFirst("/", "");
+                commandWithoutPrefix = commandWithoutPrefix.replaceFirst("   ", " ");
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(commandArray[0]);
                 if (commandArray.length > 1) {
@@ -69,8 +70,12 @@ public class Listener {
                         stringBuilder.append(" ").append(part);
                     }
                 }
-                commandWithoutPrefix = commandWithoutPrefix.replaceFirst("   ", " ");
-                if (Bukkit.getPlayer(data.getUsername()) == null && data.isPlayerOnlineNeeded()) {
+                boolean globalVariable = commandWithoutPrefix.startsWith("£");
+                commandWithoutPrefix = commandWithoutPrefix.replaceFirst("£", "");
+                if (globalVariable) {
+                    String finalCommandWithoutPrefix = commandWithoutPrefix;
+                    Bukkit.getScheduler().runTask(MineStore.instance, () -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), finalCommandWithoutPrefix));
+                } else if (Bukkit.getPlayer(data.getUsername()) == null && data.isPlayerOnlineNeeded()) {
                     Command.offline(data.getUsername(), commandWithoutPrefix);
                 } else {
                     Command.online(commandWithoutPrefix);
