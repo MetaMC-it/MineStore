@@ -14,13 +14,14 @@ public class Command {
         if (Config.isDebug()) {
             MineStore.instance.getLogger().info("Command.java online " + command);
         }
-        Bukkit.getScheduler().runTask(MineStore.instance, () -> {
+        Bukkit.getScheduler().runTaskLater(MineStore.instance, () -> {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
-            Bukkit.getLogger().info("§c[MINESTORE LOG] Comando eseguito: §e" + command);
-        });
+            Bukkit.getLogger().info("§c[MINESTORE LOG] Comando eseguito: §e" + command + " §a[ONLINE]");
+        },100L);
     }
 
     public static synchronized void offline(String username, String command) {
         Manager.add(username.toLowerCase(), command);
+        Bukkit.getLogger().info("§c[MINESTORE LOG] Comando salvato: §e" + command + " §7[OFFLINE]");
     }
 }

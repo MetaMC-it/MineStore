@@ -26,11 +26,12 @@ public class JoinQuitListener implements Listener {
             if (runLater.get(name.toLowerCase()).isEmpty()) {
                 runLater.remove(name.toLowerCase());
             } else {
-                Bukkit.getScheduler().runTask(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
+                Bukkit.getScheduler().runTaskLater(Bukkit.getPluginManager().getPlugin("MineStore"), () -> {
                     runLater.get(name.toLowerCase()).forEach(command -> Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command));
+                    Bukkit.getLogger().info("§c[MINESTORE LOG] Comando eseguito: §e" + runLater.get(name.toLowerCase() + " §a[LOGIN]"));
                     runLater.remove(name.toLowerCase());
                     PunishmentManager.update();
-                });
+                },300L);
             }
         } catch (Exception ignored) {
         }
